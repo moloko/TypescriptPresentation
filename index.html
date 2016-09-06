@@ -1,0 +1,410 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introduction to TypeScript</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Introduction to TypeScript</h2>
+					<p><small>Matt Leathes</small></p>
+				</section>
+				<section>
+					<h2>What is TypeScript?</h2>
+					<p class="fragment">It's <b>not</b> a new language</p>
+					<p class="fragment">It's a <i>superset</i> of JavaScript</p>
+					<aside class="notes">Most of what you'll see today is just standard JavaScript</aside>
+				</section>
+				<section>
+					<h2>Why should you use TypeScript?</h2>
+					<ul>
+						<li class="fragment">Ability to use ES6/7 features now</li>
+						<li class="fragment">Immediate error checking</li>
+						<li class="fragment">Code completion/documentation</li>
+						<li class="fragment">Clarity for other programmers</li>
+						<li class="fragment">Good support for OOP</li>
+						<li class="fragment">Refactoring</li>
+						<li class="fragment">Application structure</li>
+						<li class="fragment">Design patterns</li>
+					</ul>
+					<aside class="notes">Only Babel has <a href="https://kangax.github.io/compat-table/es6/" target="_blank">better support for future JS</a><br>
+					Type to interfaces not implementations. Since JS doesn't have any concept of types or interfaces/abstract classes that makes proper OOP nearly impossible to do.</aside>
+				</section>
+				<section>
+					<h2>Getting it working</h2>
+					<p>Five easy steps...</p>
+					<ol>
+						<li class="fragment">Choose a compatible editor</li>
+						<li class="fragment">Install the TypeScript Compiler</li>
+						<li class="fragment">Setup a tsconfig file</li>
+						<li class="fragment">Turn on sourcemapping</li>
+						<li class="fragment">Start the compiler</li>
+					</ol>
+					<aside class="notes">I was using VSCode anyway, it's OS and cross-platform, has support for 30 langs OOTB - and has inline error checking.<br>
+					tsconfig file tells the compiler to compile all .ts files<br>
+					tsconfig.json:
+<pre><code>{
+    "compilerOptions": {
+        "target": "es3",
+        "sourceMap": true
+    }
+}</code></pre>
+					</aside>
+				</section>
+				<section>
+					<section>
+						<h2>New ECMAScript Language Features</h2>
+					</section>
+					<section>
+						<h3>let and const</h3>
+						<aside class="notes">see letdemo.ts</aside>
+					</section>
+					<section>
+						<h2>Default parameters</h2>
+					</section>
+					<section>
+						<h2>Template strings</h2>
+						<p>Allow you to include any kind of JavaScript expression directly inside a string</p>
+						<p>Use backticks around your string instead of quotes then declare expressions with <code>${}</code></p>
+					</section>
+					<section>
+						<h2>for...of loops</h2>
+<pre><code>for(var value of array) {
+	console.log(value);
+}</code></pre> 
+					</section>
+					<section>
+						<h2>Lambda expressions</h2>
+						<small>AKA 'fat arrow functions'</small>
+						<p>Solves one of the most annoying problems in JavaScript - loss of lexical scope of <code>this</code></p>
+						<aside class="notes">see scope.js</aside>
+					</section>
+					<section>
+						<h2>Spread operator</h2>
+						<p class='fragment'>Mainly used for doing things like this</p>
+<pre class='fragment'><code class="typescript">function doStuff(input, output, ...options) {
+}</code></pre>
+						<p class="fragment">But you can also do things like concatenate two arrays:</p>
+<pre class='fragment'><code class="typescript">var a = [1,2,3];
+var b = [4,5,6];
+a.push(...b);
+</pre></code>
+						<p class="fragment">or insert one array into the middle of another:</p>
+<pre class='fragment'><code class="typescript">var source = [4,5,6];
+var target = [1,2,3,...source,7,8,9];
+</pre></code>
+						<aside class="notes">The spread parameter has to be the last parameter in the list of a function signature.</aside>
+					</section>
+					<section>
+						<h2>Destructuring</h2>
+						<p>Gives you the ability to assign values to multiple variables from a single object/array with a single statement</p>
+						<aside class="notes">Also 'computed properties' which allow you to create an object whose property names are dynamically generated at run-time. Use-cases are quite rare.</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Better error-checking</h2>
+						<small>...and better auto-completion!</small>
+					</section>
+					<section>
+						<h2>Type Fundamentals</h2>
+						<p class="fragment">The 6 primitive datatypes in JavaScript:</p>
+						<ol>
+							<li class="fragment"><code>null</code></li>
+							<li class="fragment"><code>undefined</code></li>
+							<li class="fragment"><code>Number</code></li>
+							<li class="fragment"><code>Boolean</code></li>
+							<li class="fragment"><code>String</code></li>
+							<li class="fragment"><code>Object</code></li>
+							<ul class="fragment">
+								<li><code>Array</code></li>
+								<li><code>Function</code></li>
+							</ul>
+						</ol>
+						<aside class="notes">notes</aside>
+					</section>
+					<section>
+						<h2>Type inference</h2>
+						<p>TypeScript uses static analysis to try and infer type even when you don't assign types manually.</p>
+						<aside class="notes">notes</aside>
+					</section>
+					<section>
+						<h2>Assigning standard types</h2>
+						<p></p>
+						<aside class="notes">Assign types to make the compiler help you, get better autocompletion and clarify your intent to other people<br>
+						array type is assigned with [], preceded by the expected array contents' values e.g. any[] or string[]
+						</aside>
+					</section>
+					<section>
+						<h2>Flexiblility with 'any' and 'union' types</h2>
+						<p>TypeScript has a special 'any' type which is the most dynamic of all its types</p>
+<pre><code class="typescript">var a: any;</code></pre>
+						<p class="fragment">As well as 'union types' which allow you to specify multiple types for a variable:</p>
+<pre class="fragment"><code class="typescript">var a: string | array;
+// or:
+var a: (string | array);</code></pre>
+						<small class="fragment">By default it will complain about you using props/methods that don't belong to both types but this can be circumvented with 'typeguard syntax' which is just done using either instanceof or typeof (primitive types only):</small>
+<pre class="fragment"><code class="typescript">if(typeof a === "string") { //a instanceof String would also work here
+	// safe to call stuff unique to String in this block
+}
+
+if(a instanceof Array) {
+	// safe to call array stuff in this block
+}</code></pre>
+						<aside class="notes">There's also something called 'function overloading'</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Custom types</h2>
+						<p>There are 4 ways to declare a custom type in TS...</p>
+						<aside class="notes">notes</aside>
+					</section>
+					<section>
+						<h2>1. Enums</h2>
+						<p>For creating data types to use instead of magic strings/numbers. They are created like this:</p>
+<pre><code class="typescript">enum PlayerState {
+	Playing = 1,
+	Stopped,
+	Paused,
+	Ended
+}
+var state = PlayerState.Playing;// state is now equal to 1
+PlayerState[state];//outputs 'Playing'</code></pre>
+						<aside class="notes">notes</aside>
+					</section>
+					<section>
+						<h2>2. Anonymous types</h2>
+						<p>An anonymous type is an interface that is defined as and when needed. These are defined inline, like this:</p>
+<pre><code class="typescript">var todo: { name: string};</code></pre>
+						<p>Or, as part of a function definition:</p>
+<pre><code class="typescript">function totalLength(x: { length: number }, y: { length: number }): number</code></pre>
+						<aside class="notes">That function would allow you to pass in any datatype that has a length parameter</aside>
+					</section>
+					<section>
+						<h2>3. Interfaces</h2>
+						<p>Interfaces are declared thusly:</p>
+<pre><code class="typescript">interface Todo {
+	name: string;
+	completed?: boolean;
+	getById(todoId: number):Todo;
+	deleteById(todoId: number):void;
+}</code></pre>
+						<aside class="notes">The question mark denotes the property as being optional</aside>
+					</section>
+					<section>
+						<h2>3. Interfaces (cont'd)</h2>
+						<p>You can also create an interface for describing the sorts of complex functions that JavaScript allows e.g. JQuery-style functions-as-objects e.g.</p>
+<pre><code class="typescript">interface jQuery {
+	version: number;
+	(selector: string): HTMLElement;
+}</code></pre>
+						<p>When defining the function, you cast to the interface:</p>
+<pre><code class="typescript">var $ = &lt;jQuery&gt;function(selector: string) { 
+	//find stuff in DOM 
+};
+$.version = 15;</code></pre>
+						<aside class="notes"></aside>
+					</section>
+					<section>
+						<h2>4. Classes</h2>
+						<p>Are syntactic sugar for the underlying prototypical inheritance behaviour in JavaScript<br>So, instead of doing this:</p>
+<pre><code class="javascript">function TodoService() {
+	this.todos = [];
+}
+TodoService.prototype.getAll = function() {
+	return this.todos;
+}</code></pre>
+						<p class="fragment">You do this:</p>
+<pre class="fragment"><code class="typescript">class TodoService {
+	constructor(private todos: Todo[]) {
+	}
+	getAll() {
+		return this.todos;
+	}
+}</code></pre>
+						<aside class="notes">Classes in TS are a bit like AS2.0</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Classes: static members</h2>
+					<p>Static properties & methods are defined like this:</p>
+<pre><code class="typescript">class TodoService {
+	static lastID: number = 0;
+	constructor(private todos: Todo[]) {
+	}
+	add(todo: Todo) {
+		var newId = TodoService.getNextId();
+	}
+	static getNextId(): number {
+		return TodoService.lastId++;
+	}
+}</code></pre>
+					<aside class="notes">notes</aside>
+				</section>
+				<section>
+					<h2>Classes: accessors</h2>
+					<p>getter/setters methods are defined like this:</p>
+<pre><code class="typescript">get state() { }
+set state(newState) {}</code></pre>
+					<p class="fragment">Usage of these is not just restricted to classes - you can use on object literals too:</p>
+<pre class="fragment"><code class="typescript">var todo = {
+	get state() {
+		return this._state;
+	}
+}</code></pre>
+					<aside class="notes">notes</aside>
+				</section>
+				<section>
+					<h2>Classes: inheritance</h2>
+					<p>Inheritance is easily done:</p>
+<pre><code class="typescript">class ClassName extends BaseClass {
+	someExtendedMethod () {
+		super.someExtendedMethod();
+		//other code
+	}
+}</code></pre>
+					<p class="fragment">Multiple class inheritance is not supported.</p>
+					<aside class="notes">No requirement to create a constructor function in the subclass, you can inherit this as well. If you do extend the constructor, you must explicitly call super().</aside>
+				</section>
+				<section>
+					<h2>Classes: abstract classes</h2>
+					<p>Both classes and methods within the class can be defined as abstract:</p>
+<pre><code class="typescript">abstract class MyAbstractClass {
+	abstract someMethod () {
+		//can't have any implementation here
+	}
+}</code></pre>
+					<aside class="notes">No requirement to create a constructor function in the subclass, you can inherit this as well. If you do extend the constructor, you must explicitly call super().</aside>
+				</section>
+				<section>
+					<h2>Classes: access modifiers</h2>
+					<p>TypeScript has support for the following access modifiers:</p>
+					<ul>
+						<li>public</li>
+						<li>protected</li>
+						<li>private</li>
+					<aside class="notes">Private prevents something from being accessed from outside of the current class (even subclasses can't access it)<br>If you apply an access modifier to a getter/setter it must be same for both</aside>
+				</section>
+				<section>
+					<h2>Classes: implementing interfaces</h2>
+					<p>As you'd expect, multiple interfaces can be implemented:</p>
+<pre><code class="typescript">class MyClass implements MyInterfaceOne, MyInterfaceTwo {
+}</code></pre>
+					<aside class="notes">Amazingly you don't even need to formally apply an interface, if you're using one TS will automatically pick up on that.</aside>
+				</section>
+				<section>
+					<h2>Generics</h2>
+					<p>Allow you to do things like create a function that might accept data of any type.<br>
+					TypeScript will let you create a 'generic type' for the function and then calculate autocomplete based on what you pass in.</p>
+					<aside class="notes">Too much to go into here, check out the TS training if you want to know more</aside>
+				</section>
+				<section>
+					<section>
+						<h2>Modularisation</h2>
+						<p>TypeScript supports two flavours of module:</p>
+						<ol>
+							<li>Internal AKA 'namespaces'</li>
+							<li>External</li>
+						</ol>
+						<aside class="notes">Both encourage encapsulation and organization but do so differently. Internal modules create function scope via the namespace; external modules do so using the file path. Both require components to be exported if they need to use them outside of the module - and both require you to import any other components you want to use.</aside>
+					</section>
+					<section>
+						<h2>Internal modules/Namespaces</h2>
+						<p>A namespaced module looks like this:</p>
+<pre><code class="typescript">namespace com.kineo.MyApp {
+	export interface Iinterface {
+	}
+}</code></pre>
+						<aside class="notes">Multiple namespaces can be defined in the same file<br>
+						Can create aliases to namespaced items just like in AS with import keyword<br>
+						Namespaces effectively compile down to <abbr title="immediately-invoked function expression">IIFE</abbr>'s<br>
+						Using the export keyword allows that thing to be accessible outside of the namespace. Leaving this out and defining props/fncs within the namespace (but not within the class) allows you to create truly private variables/functions - classes within the same namespace can refer to them but nothing else.
+						</aside>
+					</section>
+					<section>
+						<h2>External modules</h2>
+						<p>TypeScript supports two different - but functionally equivalent - methods of using external modules:</p>
+						<ol>
+							<li>Require style</li>
+							<li>ECMAScript 2015 style</li>
+						</ol>
+						<p>ECMAScript 2015 is probably best to go for as it's a standard that will eventually be supported natively in the browser.</p>
+						<p>To use external modules you need to add the <code>module</code> setting to <code>compilerOptions</code> in tsconfig.json.</p>
+						<aside class="notes"></aside>
+					</section>
+					<section>
+						<h2>External modules - require style</h2>
+<pre><code class="typescript">import Model = require('./model');
+import Todo = Model.Todo;</code></pre>
+						<aside class="notes"></aside>
+					</section>
+					<section>
+						<h2>External modules - EMCAScript 2015 style</h2>
+<pre><code class="typescript">import {Todo, TodoState as TS} from './model';</code></pre>
+						<p class="fragment">Or, to import everything:</p>
+<pre class="fragment"><code class="typescript">import * as Model from './model';</code></pre>
+						<p class="fragment">Or to load but import nothing:</p>
+<pre class="fragment"><code class="typescript">import './jQuery';</code></pre>
+						<aside class="notes"></aside>
+					</section>
+				</section>
+				<section>
+					<h2>Working with external libraries</h2>
+					<p>How do you deal with 3rd party libraries like JQuery that are not written in TypeScript?</p>
+					<p class="fragment">You might try this:</p>
+<pre class="fragment"><code class="typescript">var $: any;
+var JQuery: any;</code></pre>
+					<p class="fragment">But this would be safer:</p>
+<pre class="fragment"><code class="typescript">declare $: any;
+declare JQuery: any;</code></pre>
+					<small class="fragment">(This code won't be included in the JavaScript output, it's just for the TypeScript compiler)</small>
+					<p class="fragment">But it would be best to use a TypeScript Definition File</p>
+					<aside class="notes">You can get TS compiler to generate TSDFs for code you want to distribute purely as JS by setting the 'declaration' compiler option in your tsconfig file<br>
+					Install the tsd package via $ npm install -g tsd to be able to search for TDFS via $ tsd query jquery then install via $ tsd install jquery. You can add the --save flag to have it list what you've downloaded in a config file so that anyone else working on the project by just running $ tsd install - so you don't have to check the TDFs into source control</aside>
+				</section>
+				<section>
+					<h1>THE END</h1>
+					<small>Any questions?</small>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
